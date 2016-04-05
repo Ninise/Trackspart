@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Trackspart</string>
+    <string name="home_start">GO</string>
+    <string name="home_sets">Sets</string>
+    <string name="home_work">Seconds</string>
+    <string name="home_rest">Rest</string>
+    <string name="home_increase">+</string>
+    <string name="home_decrease">-</string>
 </resources>
