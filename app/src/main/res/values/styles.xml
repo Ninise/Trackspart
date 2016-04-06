@@ -16,18 +16,14 @@
 
     <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textColor">@color/justWhite</item>
+        <item name="android:textColor">@color/justGrey</item>
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="RobotoButtonStyle" parent="android:style/Widget.Button">
-        <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textSize">24sp</item>
+    <style name="RobotoButtonStyle" parent="Widget.Design.FloatingActionButton">
         <item name="android:textColor">@color/justWhite</item>
-        <item name="android:background">@color/colorPrimary</item>
-
-    </style><style name="RobotoButtonStyle.Go" parent="RobotoButtonStyle">
-        <item name="android:textSize">120sp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
 </resources>
