@@ -1,7 +1,10 @@
 package com.ninise.trackspart.mvp.presenter;
 
-/**
- * Created by ninise on 07.04.16.
- */
+
 public interface IMainView {
+
+    void changeSetsState(int state);
+    void changeSecsState(int state);
+    void changeRestState(int state);
+
 }

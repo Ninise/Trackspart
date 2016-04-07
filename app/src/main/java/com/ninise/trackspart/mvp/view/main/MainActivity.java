@@ -12,17 +12,24 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.ninise.trackspart.R;
+import com.ninise.trackspart.mvp.presenter.IMainView;
+import com.ninise.trackspart.mvp.presenter.MainPresenter;
 
 import butterknife.Bind;
 import butterknife.BindDrawable;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Bind(R.id.homeToolbar) Toolbar mHomeToolbar;
     @Bind(R.id.homeStartButton) Button mGoButton;
     @Bind(R.id.homeTabLay) TableLayout mTableLayout;
     @BindDrawable(R.mipmap.ic_launcher) Drawable mLogoToolbarDrawable;
+
+    private MainPresenter mPresenter;
+    private TableRow setsRow = (TableRow) mTableLayout.getChildAt(0);
+    private TableRow secsRow = (TableRow) mTableLayout.getChildAt(1);
+    private TableRow restRow = (TableRow) mTableLayout.getChildAt(2);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,15 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(mHomeToolbar);
         mHomeToolbar.setNavigationIcon(mLogoToolbarDrawable);
-
-        TableRow setsRow = (TableRow) mTableLayout.getChildAt(0);
-        TableRow secsRow = (TableRow) mTableLayout.getChildAt(1);
-        TableRow restRow = (TableRow) mTableLayout.getChildAt(2);
-
-        TextView sets = (TextView) setsRow.getChildAt(1);
-        TextView secs = (TextView) secsRow.getChildAt(1);
-        TextView rest = (TextView) restRow.getChildAt(1);
-
+        
         RxView.clicks(setsRow.getChildAt(2)).subscribe(
 
         );
@@ -60,11 +59,30 @@ public class MainActivity extends AppCompatActivity {
         RxView.clicks(mGoButton).subscribe(
 
         );
+
+        mPresenter = new MainPresenter(this);
     }
 
     @Override
     protected void onDestroy() {
         ButterKnife.unbind(this);
         super.onDestroy();
+    }
+
+    @Override
+    public void changeSetsState(int state) {
+        TextView sets = (TextView) setsRow.getChildAt(1);
+    }
+
+    @Override
+    public void changeSecsState(int state) {
+        TextView secs = (TextView) secsRow.getChildAt(1);
+
+    }
+
+    @Override
+    public void changeRestState(int state) {
+        TextView rest = (TextView) restRow.getChildAt(1);
+
     }
 }
