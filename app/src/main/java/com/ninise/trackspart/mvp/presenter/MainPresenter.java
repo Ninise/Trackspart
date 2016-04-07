@@ -1,6 +1,10 @@
 package com.ninise.trackspart.mvp.presenter;
 
+import android.util.Log;
+
 public class MainPresenter implements IMainPresenter {
+
+    private static final String TAG = MainPresenter.class.getSimpleName();
 
     private IMainView mView;
 
@@ -10,7 +14,9 @@ public class MainPresenter implements IMainPresenter {
 
     @Override
     public void setSetsState(int count) {
+        Log.d(TAG, "setSetsState: " + count);
 
+        mView.changeSetsState(count);
     }
 
     @Override
