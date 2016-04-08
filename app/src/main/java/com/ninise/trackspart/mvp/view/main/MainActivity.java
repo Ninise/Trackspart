@@ -20,10 +20,13 @@ import com.ninise.trackspart.mvp.model.beans.Sets;
 import com.ninise.trackspart.mvp.presenter.IMainView;
 import com.ninise.trackspart.mvp.presenter.MainPresenter;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.Bind;
 import butterknife.BindDrawable;
 import butterknife.BindString;
 import butterknife.ButterKnife;
+import rx.Observable;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
 
