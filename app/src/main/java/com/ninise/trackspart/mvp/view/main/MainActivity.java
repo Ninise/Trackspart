@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -17,16 +17,13 @@ import com.ninise.trackspart.R;
 import com.ninise.trackspart.mvp.model.beans.Rest;
 import com.ninise.trackspart.mvp.model.beans.Seconds;
 import com.ninise.trackspart.mvp.model.beans.Sets;
-import com.ninise.trackspart.mvp.presenter.IMainView;
-import com.ninise.trackspart.mvp.presenter.MainPresenter;
-
-import java.util.concurrent.TimeUnit;
+import com.ninise.trackspart.mvp.presenter.main.activity.IMainView;
+import com.ninise.trackspart.mvp.presenter.main.activity.MainPresenter;
 
 import butterknife.Bind;
 import butterknife.BindDrawable;
 import butterknife.BindString;
 import butterknife.ButterKnife;
-import rx.Observable;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
 
@@ -59,7 +56,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         changeRestState(0);
 
         RxView.clicks(mGoButton).subscribe(
-
+            aVoid -> {
+                mPresenter.startTimer(
+                        Sets.getInstance().getCount(),
+                        Seconds.getInstance().getCount(),
+                        Rest.getInstance().getCount()
+                );
+            }
         );
 
 
@@ -147,5 +150,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         TableRow restRow = (TableRow) mTableLayout.getChildAt(2);
         TextView rest = (TextView) restRow.getChildAt(1);
         rest.setText(mRestString + " " + state);
+    }
+
+    @Override
+    public void displayWork() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainView, new TimerFragment());
+        ft.commit();
     }
 }

@@ -1,6 +1,4 @@
-package com.ninise.trackspart.mvp.presenter;
-
-import android.util.Log;
+package com.ninise.trackspart.mvp.presenter.main.activity;
 
 public class MainPresenter implements IMainPresenter {
 
@@ -14,22 +12,21 @@ public class MainPresenter implements IMainPresenter {
 
     @Override
     public void setSetsState(int count) {
-        Log.d(TAG, "setSetsState: " + count);
-
         mView.changeSetsState(count);
     }
 
     @Override
     public void setSecsState(int count) {
-        Log.d(TAG, "setSecsState: " + count);
-
         mView.changeSecsState(count);
     }
 
     @Override
     public void setRestState(int count) {
-        Log.d(TAG, "setRestState: " + count);
-
         mView.changeRestState(count);
+    }
+
+    @Override
+    public void startTimer(int sets, int seconds, int rest) {
+       mView.displayWork();
     }
 }
