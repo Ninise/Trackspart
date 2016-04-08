@@ -21,11 +21,15 @@ public class MainPresenter implements IMainPresenter {
 
     @Override
     public void setSecsState(int count) {
+        Log.d(TAG, "setSecsState: " + count);
 
+        mView.changeSecsState(count);
     }
 
     @Override
     public void setRestState(int count) {
+        Log.d(TAG, "setRestState: " + count);
 
+        mView.changeRestState(count);
     }
 }

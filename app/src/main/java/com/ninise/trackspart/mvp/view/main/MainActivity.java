@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.ninise.trackspart.R;
+import com.ninise.trackspart.mvp.model.beans.Rest;
+import com.ninise.trackspart.mvp.model.beans.Seconds;
 import com.ninise.trackspart.mvp.model.beans.Sets;
 import com.ninise.trackspart.mvp.presenter.IMainView;
 import com.ninise.trackspart.mvp.presenter.MainPresenter;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Bind(R.id.homeStartButton) Button mGoButton;
     @Bind(R.id.homeTabLay) TableLayout mTableLayout;
     @BindString(R.string.home_sets) String mSetsString;
+    @BindString(R.string.home_work) String mSecondsString;
+    @BindString(R.string.home_rest) String mRestString;
     @BindDrawable(R.mipmap.ic_launcher) Drawable mLogoToolbarDrawable;
 
     private MainPresenter mPresenter;
@@ -43,36 +47,73 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         setSupportActionBar(mHomeToolbar);
         mHomeToolbar.setNavigationIcon(mLogoToolbarDrawable);
 
-        TableRow setsRow = (TableRow) mTableLayout.getChildAt(0);
-        TableRow secsRow = (TableRow) mTableLayout.getChildAt(1);
-        TableRow restRow = (TableRow) mTableLayout.getChildAt(2);
+        setsButtons();
+        secsButtons();
+        restButtons();
 
-        RxView.clicks(setsRow.getChildAt(2)).subscribe(
-            aVoid -> {
-                Sets.getInstance().incSets();
-                mPresenter.setSetsState(Sets.getInstance().getCount());
-            }
-        );
-
-        RxView.clicks(setsRow.getChildAt(0)).subscribe(
-            aVoid -> {
-                Sets.getInstance().decSets();
-                mPresenter.setSetsState(Sets.getInstance().getCount());
-            }
-        );
-
-        RxView.clicks(secsRow.getChildAt(2)).subscribe();
-        RxView.clicks(secsRow.getChildAt(0)).subscribe();
-
-        RxView.clicks(restRow.getChildAt(2)).subscribe();
-        RxView.clicks(restRow.getChildAt(0)).subscribe();
-
+        changeSecsState(0);
+        changeSetsState(0);
+        changeRestState(0);
 
         RxView.clicks(mGoButton).subscribe(
 
         );
 
+
         mPresenter = new MainPresenter(this);
+    }
+
+    public void setsButtons() {
+        TableRow setsRow = (TableRow) mTableLayout.getChildAt(0);
+
+        RxView.clicks(setsRow.getChildAt(2)).subscribe(
+                aVoid -> {
+                    Sets.getInstance().incSets();
+                    mPresenter.setSetsState(Sets.getInstance().getCount());
+                }
+        );
+
+        RxView.clicks(setsRow.getChildAt(0)).subscribe(
+                aVoid -> {
+                    Sets.getInstance().decSets();
+                    mPresenter.setSetsState(Sets.getInstance().getCount());
+                }
+        );
+    }
+
+    public void secsButtons() {
+        TableRow secsRow = (TableRow) mTableLayout.getChildAt(1);
+
+        RxView.clicks(secsRow.getChildAt(2)).subscribe(
+                aVoid -> {
+                    Seconds.getInstance().incSecs();
+                    mPresenter.setSecsState(Seconds.getInstance().getCount());
+                }
+        );
+
+        RxView.clicks(secsRow.getChildAt(0)).subscribe(
+                aVoid -> {
+                    Seconds.getInstance().decSecs();
+                    mPresenter.setSecsState(Seconds.getInstance().getCount());
+                }
+        );
+    }
+
+    public void restButtons() {
+        TableRow restRow = (TableRow) mTableLayout.getChildAt(2);
+
+        RxView.clicks(restRow.getChildAt(2)).subscribe(
+                aVoid -> {
+                    Rest.getInstance().incRest();
+                    mPresenter.setRestState(Rest.getInstance().getCount());
+                }
+        );
+        RxView.clicks(restRow.getChildAt(0)).subscribe(
+                aVoid -> {
+                    Rest.getInstance().decRest();
+                    mPresenter.setRestState(Rest.getInstance().getCount());
+                }
+        );
     }
 
     @Override
@@ -94,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     public void changeSecsState(int state) {
         TableRow secsRow = (TableRow) mTableLayout.getChildAt(1);
         TextView secs = (TextView) secsRow.getChildAt(1);
-        secs.setText(mSetsString + " " + state);
+        secs.setText(mSecondsString + " " + state);
     }
 
     @SuppressLint("SetTextI18n")
@@ -102,6 +143,6 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     public void changeRestState(int state) {
         TableRow restRow = (TableRow) mTableLayout.getChildAt(2);
         TextView rest = (TextView) restRow.getChildAt(1);
-        rest.setText(mSetsString + " " + state);
+        rest.setText(mRestString + " " + state);
     }
 }
