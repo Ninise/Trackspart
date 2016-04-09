@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.ninise.trackspart.R;
 import com.ninise.trackspart.mvp.presenter.IStateView;
 import com.ninise.trackspart.mvp.presenter.main.fragment.TimerPresenter;
+import com.ninise.trackspart.utils.Constants;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,7 +38,11 @@ public class TimerFragment extends Fragment implements IStateView {
 
         ButterKnife.bind(this , v);
 
-        mPresenter.startTimer(2, 10, 2);
+        mPresenter.startTimer(
+                getArguments().getInt(Constants.SETS),
+                getArguments().getInt(Constants.SECONDS),
+                getArguments().getInt(Constants.REST)
+        );
 
         return v;
     }
@@ -45,19 +50,19 @@ public class TimerFragment extends Fragment implements IStateView {
     @SuppressLint("SetTextI18n")
     @Override
     public void changeSetsState(int state) {
-        mSetsTextView.setText("Sets " + state);
+        mSetsTextView.setText(Constants.SETS + ": " + state);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void changeSecsState(int state) {
-        mSecondsTextView.setText("Secs " + state);
+        mSecondsTextView.setText(Constants.SECONDS + ": " + state);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void changeRestState(int state) {
-        mRestTextView.setText("Rest " + state);
+        mRestTextView.setText(Constants.REST + ": " + state);
     }
 
     @Override

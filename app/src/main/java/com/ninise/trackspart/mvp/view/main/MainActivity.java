@@ -19,6 +19,7 @@ import com.ninise.trackspart.mvp.model.beans.Seconds;
 import com.ninise.trackspart.mvp.model.beans.Sets;
 import com.ninise.trackspart.mvp.presenter.main.activity.IMainView;
 import com.ninise.trackspart.mvp.presenter.main.activity.MainPresenter;
+import com.ninise.trackspart.utils.Constants;
 
 import butterknife.Bind;
 import butterknife.BindDrawable;
@@ -155,7 +156,16 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void displayWork() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainView, new TimerFragment());
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constants.SETS, Sets.getInstance().getCount());
+        bundle.putInt(Constants.SECONDS, Seconds.getInstance().getCount());
+        bundle.putInt(Constants.REST, Rest.getInstance().getCount());
+
+        TimerFragment fragment = new TimerFragment();
+        fragment.setArguments(bundle);
+
+        ft.replace(R.id.mainView, fragment);
         ft.commit();
     }
 }

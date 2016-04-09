@@ -8,12 +8,7 @@ import rx.schedulers.Schedulers;
 
 public class IntervalTimer {
 
-    public static Observable<Long> startSecondsTimer(int count) {
-//        return Observable.just(Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
-//                .filter(i -> i <= count)
-//        );
-
-        return Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
-                .take(count);
+    public static Observable<Long> startTimer(int count) {
+        return Observable.interval(1, TimeUnit.SECONDS, Schedulers.io()).take(count);
     }
 }
