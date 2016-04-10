@@ -3,9 +3,7 @@ package com.ninise.trackspart.mvp.presenter.main.fragment;
 import com.ninise.trackspart.mvp.model.timer.IntervalTimer;
 import com.ninise.trackspart.mvp.presenter.IStateView;
 
-import rx.android.schedulers.AndroidSchedulers;
-
-public class TimerPresenter implements ITimerPresenter {
+public class TimerPresenter implements ITimerPresenter{
 
     private IStateView mView;
 
@@ -18,14 +16,18 @@ public class TimerPresenter implements ITimerPresenter {
         mView.changeSetsState(sets);
         mView.changeRestState(rest);
 
-        IntervalTimer.startTimer(seconds)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(num -> mView.changeSecsState(num.intValue() + 1), e -> {},
-                        () ->
-                            IntervalTimer.startTimer(rest)
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(num -> mView.changeRestState(num.intValue() + 1))
+        int[] set = {sets};
 
-                );
+        IntervalTimer.startTimer(seconds, rest)
+               .doOnCompleted(() -> mView.changeSetsState(--set[0]))
+               .repeat(sets)
+               .subscribe(tick -> {
+                    if (rest < tick) {
+                        mView.changeSecsState(tick - rest);
+                    } else {
+                        mView.changeSecsState(0);
+                        mView.changeRestState(--tick);
+                    }
+               });
     }
 }
