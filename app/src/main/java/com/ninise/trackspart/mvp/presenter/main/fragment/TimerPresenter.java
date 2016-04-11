@@ -1,7 +1,6 @@
 package com.ninise.trackspart.mvp.presenter.main.fragment;
 
 import com.ninise.trackspart.mvp.model.timer.IntervalTimer;
-import com.ninise.trackspart.mvp.presenter.main.fragment.ITimerView;
 
 public class TimerPresenter implements ITimerPresenter {
 
@@ -30,6 +29,9 @@ public class TimerPresenter implements ITimerPresenter {
                         mView.changeRestState(--tick);
                         mView.onRest();
                     }
-               }, e -> {}, () -> mView.onStopTimer());
+               }, e -> {}, () -> {
+                   mView.onStopTimer();
+                   mView.backToMain();
+               });
     }
 }

@@ -7,5 +7,6 @@ public interface ITimerView extends IStateView {
     void onSecs();
     void onRest();
     void onStopTimer();
+    void backToMain();
 
 }

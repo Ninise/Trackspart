@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,5 +101,12 @@ public class TimerFragment extends Fragment implements ITimerView, IStateView {
     public void onStopTimer() {
         mCircularProgressView.setProgress(0);
         mCircularProgressView.stopAnimation();
+    }
+
+    @Override
+    public void backToMain() {
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainContainer, new MainFragment());
+        fragmentTransaction.commit();
     }
 }
