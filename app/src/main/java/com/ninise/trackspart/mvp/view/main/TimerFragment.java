@@ -30,6 +30,9 @@ public class TimerFragment extends Fragment implements ITimerView, IStateView {
     @Bind(R.id.timerState) TextView mStateTextView;
     @BindString(R.string.timer_state_work) String mWork;
     @BindString(R.string.timer_state_rest) String mRest;
+    @BindString(R.string.home_sets) String mTimerSets;
+    @BindString(R.string.home_work) String mTimerWork;
+    @BindString(R.string.home_rest) String mTimerRest;
 
     private TimerPresenter mPresenter;
 
@@ -60,21 +63,21 @@ public class TimerFragment extends Fragment implements ITimerView, IStateView {
     @SuppressLint("SetTextI18n")
     @Override
     public void changeSetsState(int state) {
-        mSetsTextView.setText(Constants.SETS + ": " + state);
+        mSetsTextView.setText(mTimerSets + state);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void changeSecsState(int state) {
         mCircularProgressView.setProgress(state);
-        mSecondsTextView.setText(Constants.SECONDS + ": " + state);
+        mSecondsTextView.setText(mTimerWork + state);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void changeRestState(int state) {
         mCircularProgressView.setProgress(state);
-        mRestTextView.setText(Constants.REST + ": " + state);
+        mRestTextView.setText(mTimerRest + state);
     }
 
     @Override

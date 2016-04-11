@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/justWhite">
+                android:background="@color/justGrey">
 
     <RelativeLayout
         android:id="@+id/timerCircularAndState"
@@ -25,7 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:gravity="center"/>
+            android:gravity="center"
+            style="@style/RobotoTextViewStyle.Timer"
+            />
 
     </RelativeLayout>
 
@@ -36,7 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/timerCircularAndState"
         android:layout_centerVertical="true"
-        android:gravity="center"/>
+        android:gravity="center"
+        style="@style/RobotoTextViewStyle.Timer"
+        />
 
     <TextView
         android:id="@+id/timerSeconds"
@@ -44,7 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/timerSets"
         android:layout_centerVertical="true"
-        android:gravity="center"/>
+        android:gravity="center"
+        style="@style/RobotoTextViewStyle.Timer"
+        />
 
     <TextView
         android:id="@+id/timerRest"
@@ -52,7 +58,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/timerSeconds"
         android:layout_centerVertical="true"
-        android:gravity="center"/>
+        android:gravity="center"
+        style="@style/RobotoTextViewStyle.Timer"
+        />
 
 
 </RelativeLayout>
