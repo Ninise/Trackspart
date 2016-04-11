@@ -1,13 +1,13 @@
 package com.ninise.trackspart.mvp.presenter.main.fragment;
 
 import com.ninise.trackspart.mvp.model.timer.IntervalTimer;
-import com.ninise.trackspart.mvp.presenter.IStateView;
+import com.ninise.trackspart.mvp.presenter.main.fragment.ITimerView;
 
-public class TimerPresenter implements ITimerPresenter{
+public class TimerPresenter implements ITimerPresenter {
 
-    private IStateView mView;
+    private ITimerView mView;
 
-    public TimerPresenter(IStateView view) {
+    public TimerPresenter(ITimerView view) {
         mView = view;
     }
 
@@ -24,10 +24,12 @@ public class TimerPresenter implements ITimerPresenter{
                .subscribe(tick -> {
                     if (rest < tick) {
                         mView.changeSecsState(tick - rest);
+                        mView.onSecs();
                     } else {
                         mView.changeSecsState(0);
                         mView.changeRestState(--tick);
+                        mView.onRest();
                     }
-               });
+               }, e -> {}, () -> mView.onStopTimer());
     }
 }
