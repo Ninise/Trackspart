@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/homeTabLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/homeToolbar">
+
+        <include
+            android:id="@+id/homeSetsLay"
+            layout="@layout/picker_layout"
+            />
+
+        <include
+            android:id="@+id/homeSecondsLay"
+            layout="@layout/picker_layout"/>
+
+        <include
+            android:id="@+id/homeRestLay"
+            layout="@layout/picker_layout"/>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/homeStartButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/home_start"
+        style="@style/RobotoButtonStyle"
+        />
+
+</RelativeLayout>
