@@ -4,10 +4,19 @@
                 android:layout_height="match_parent"
                 android:background="@color/justGrey">
 
+    <TextView
+        android:id="@+id/timerSets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        style="@style/RobotoTextViewStyle.Timer"
+        />
+
     <RelativeLayout
         android:id="@+id/timerCircularAndState"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timerSets">
 
         <com.github.rahatarmanahmed.cpv.CircularProgressView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,36 +40,12 @@
 
     </RelativeLayout>
 
-
-    <TextView
-        android:id="@+id/timerSets"
+    <Button
+        android:id="@+id/timerStopBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/timerCircularAndState"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        style="@style/RobotoTextViewStyle.Timer"
-        />
-
-    <TextView
-        android:id="@+id/timerSeconds"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/timerSets"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        style="@style/RobotoTextViewStyle.Timer"
-        />
-
-    <TextView
-        android:id="@+id/timerRest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/timerSeconds"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        style="@style/RobotoTextViewStyle.Timer"
-        />
-
+        android:layout_alignParentBottom="true"
+        android:text="@string/timer_stop"
+        style="@style/RobotoButtonStyle"/>
 
 </RelativeLayout>

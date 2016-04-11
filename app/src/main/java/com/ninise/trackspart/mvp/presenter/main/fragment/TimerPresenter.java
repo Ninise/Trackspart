@@ -23,11 +23,8 @@ public class TimerPresenter implements ITimerPresenter {
                .subscribe(tick -> {
                     if (rest < tick) {
                         mView.changeSecsState(tick - rest);
-                        mView.onSecs();
                     } else {
-                        mView.changeSecsState(0);
                         mView.changeRestState(--tick);
-                        mView.onRest();
                     }
                }, e -> {}, () -> {
                    mView.onStopTimer();

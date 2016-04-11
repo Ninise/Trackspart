@@ -4,8 +4,8 @@
     <string name="home_sets">Sets:</string>
     <string name="home_work">Seconds:</string>
     <string name="home_rest">Rest:</string>
-    <string name="timer_state_work">WORK</string>
-    <string name="timer_state_rest">REST</string>
+    <string name="timer_state_work">WORK: </string>
+    <string name="timer_state_rest">REST: </string>
     <string name="back_pressed">Press twice for exit</string>
     <string name="timer_stop">STOP</string>
     <string name="menu_settings">Settings</string>
