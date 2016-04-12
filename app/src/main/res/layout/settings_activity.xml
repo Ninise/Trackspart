@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    android:background="@color/justGrey">
+
+    <include android:id="@+id/settingsToolbar"
+             layout="@layout/tool_bar"/>
+
+    <TextView
+        android:id="@+id/settingsTimerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/settingsToolbar"
+        android:text="@string/settings_timer"
+        style="@style/RobotoTextViewStyle.Timer"/>
+
+    <TextView
+        android:id="@+id/settingsPrepareTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/settingsTimerTextView"
+        android:text="@string/settings_timer_of_preparing"
+        />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/settingsPrepareSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/settingsTimerTextView"
+        android:layout_alignParentRight="true"
+        android:minWidth="80dp"
+        android:minHeight="40dp"
+        />
+
+    <TextView
+        android:id="@+id/settingsSaveDataTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/settingsPrepareTimeTextView"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/settings_save_data"
+        />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/settingsSaveDataCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/settingsPrepareTimeTextView"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/settingsSaveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/settings_save"
+        style="@style/RobotoButtonStyle"/>
+
+</RelativeLayout>
