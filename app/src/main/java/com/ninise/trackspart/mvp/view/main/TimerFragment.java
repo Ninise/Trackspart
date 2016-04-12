@@ -73,19 +73,19 @@ public class TimerFragment extends Fragment implements ITimerView, IStateView {
     @SuppressLint("SetTextI18n")
     @Override
     public void changeSecsState(int state) {
-        mCircularProgressView.setMaxProgress(getArguments().getInt(Constants.REST));
+        mCircularProgressView.setMaxProgress(getArguments().getInt(Constants.SECONDS));
         mCircularProgressView.setProgress(state);
-        mCircularProgressView.setColor(getActivity().getResources().getColor(R.color.justGreen));
-        mStateTextView.setText(mRest + " " + state);
+        mCircularProgressView.setColor(getActivity().getResources().getColor(R.color.colorPrimaryDark));
+        mStateTextView.setText(mWork + " " + state);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void changeRestState(int state) {
-        mCircularProgressView.setMaxProgress(getArguments().getInt(Constants.SECONDS));
+        mCircularProgressView.setMaxProgress(getArguments().getInt(Constants.REST));
         mCircularProgressView.setProgress(state);
-        mCircularProgressView.setColor(getActivity().getResources().getColor(R.color.colorPrimaryDark));
-        mStateTextView.setText(mWork + " " + state);
+        mStateTextView.setText(mRest + " " + state);
+        mCircularProgressView.setColor(getActivity().getResources().getColor(R.color.justGreen));
     }
 
     @Override

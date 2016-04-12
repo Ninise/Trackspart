@@ -5,18 +5,8 @@
     android:background="@color/justGrey">
 
     <include android:id="@+id/settingsToolbar"
-             layout="@layout/tool_bar"/>
-
-    <TextView
-        android:id="@+id/settingsTimerTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_below="@id/settingsToolbar"
-        android:text="@string/settings_timer"
-        style="@style/RobotoTextViewStyle.Timer"/>
+             layout="@layout/tool_bar"
+        />
 
     <TextView
         android:id="@+id/settingsPrepareTimeTextView"
@@ -25,7 +15,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/settingsTimerTextView"
+        android:layout_below="@id/settingsToolbar"
         android:text="@string/settings_timer_of_preparing"
         />
 
@@ -36,10 +26,11 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/settingsTimerTextView"
+        android:layout_below="@id/settingsToolbar"
         android:layout_alignParentRight="true"
         android:minWidth="80dp"
         android:minHeight="40dp"
+        android:popupBackground="@color/colorPrimaryDark"
         />
 
     <TextView
@@ -48,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@id/settingsPrepareTimeTextView"
         android:ellipsize="end"
         android:maxLines="1"
@@ -61,9 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@id/settingsPrepareTimeTextView"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        />
 
     <Button
         android:id="@+id/settingsSaveBtn"
@@ -74,6 +66,7 @@
         android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
         android:text="@string/settings_save"
-        style="@style/RobotoButtonStyle"/>
+        style="@style/RobotoButtonStyle"
+        />
 
 </RelativeLayout>

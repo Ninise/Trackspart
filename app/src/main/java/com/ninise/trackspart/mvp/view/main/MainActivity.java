@@ -1,5 +1,6 @@
 package com.ninise.trackspart.mvp.view.main;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,16 +13,17 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ninise.trackspart.R;
-
-import java.util.zip.Inflater;
+import com.ninise.trackspart.mvp.view.settings.SettingsActivity;
 
 import butterknife.Bind;
 import butterknife.BindDrawable;
+import butterknife.BindString;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.homeToolbar) Toolbar mHomeToolbar;
+    @BindString(R.string.app_name) String mAppNameString;
     @BindDrawable(R.mipmap.ic_launcher) Drawable mLogoToolbarDrawable;
 
     private boolean doubleBackToExitPressedOnce = false;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(mHomeToolbar);
+        mHomeToolbar.setTitle(mAppNameString);
         mHomeToolbar.setNavigationIcon(mLogoToolbarDrawable);
 
         showMainFragment();
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuSettings:
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.menuAbout:
                 break;
