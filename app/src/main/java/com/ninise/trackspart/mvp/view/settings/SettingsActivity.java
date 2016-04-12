@@ -13,13 +13,15 @@ import android.widget.Button;
 import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.jakewharton.rxbinding.view.RxView;
 import com.ninise.trackspart.R;
+import com.ninise.trackspart.mvp.presenter.settings.ISettingsView;
+import com.ninise.trackspart.mvp.presenter.settings.SettingsPresenter;
 
 import butterknife.Bind;
 import butterknife.BindDrawable;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements ISettingsView {
 
     @Bind(R.id.settingsToolbar) Toolbar mToolbar;
     @Bind(R.id.settingsPrepareSpinner) AppCompatSpinner mPrepareSpinner;
@@ -27,6 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
     @Bind(R.id.settingsSaveBtn) Button mSaveButton;
     @BindDrawable(R.drawable.ic_action_navigation_arrow_back) Drawable mBackDrawable;
     @BindString(R.string.menu_settings) String mSettingsString;
+
+    private SettingsPresenter mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(mBackDrawable);
 
-        RxToolbar.navigationClicks(mToolbar).subscribe(v -> onBackPressed());
+        RxToolbar.navigationClicks(mToolbar).subscribe(v -> mPresenter.onBack());
 
         ArrayAdapter<?> adapterPrepareList =
                 ArrayAdapter.createFromResource(
@@ -52,14 +56,35 @@ public class SettingsActivity extends AppCompatActivity {
         mPrepareSpinner.setAdapter(adapterPrepareList);
 
         RxView.clicks(mSaveButton).subscribe(v -> {
-
-            onBackPressed();
+            mPresenter.save(mPrepareSpinner.getSelectedItem(), mSaveCheckBox.isChecked());
         });
+
+        mPresenter = new SettingsPresenter(this);
     }
 
     @Override
     protected void onDestroy() {
         ButterKnife.unbind(this);
         super.onDestroy();
+    }
+
+    @Override
+    public void setSaveLastState(boolean state) {
+
+    }
+
+    @Override
+    public void setPrepareTime(int state) {
+
+    }
+
+    @Override
+    public void setSavedSettings(int spinnerPos, boolean checkState) {
+
+    }
+
+    @Override
+    public void onSaved() {
+        onBackPressed();
     }
 }

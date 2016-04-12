@@ -1,4 +1,4 @@
-package com.ninise.trackspart.mvp.presenter;
+package com.ninise.trackspart.mvp.presenter.main;
 
 public interface IStateView {
 

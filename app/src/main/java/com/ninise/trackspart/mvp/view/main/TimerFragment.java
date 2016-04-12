@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.ninise.trackspart.R;
-import com.ninise.trackspart.mvp.presenter.IStateView;
+import com.ninise.trackspart.mvp.presenter.main.IStateView;
 import com.ninise.trackspart.mvp.presenter.main.fragment.ITimerView;
 import com.ninise.trackspart.mvp.presenter.main.fragment.TimerPresenter;
 import com.ninise.trackspart.utils.Constants;
