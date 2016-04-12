@@ -56,10 +56,13 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         mPrepareSpinner.setAdapter(adapterPrepareList);
 
         RxView.clicks(mSaveButton).subscribe(v -> {
-            mPresenter.save(mPrepareSpinner.getSelectedItem(), mSaveCheckBox.isChecked());
+            mPresenter.save(this, mPrepareSpinner.getSelectedItemPosition(), mSaveCheckBox.isChecked());
         });
 
         mPresenter = new SettingsPresenter(this);
+
+        mPresenter.getDefaultSaveLastState(this);
+        mPresenter.getDefaultSpinnerPosition(this);
     }
 
     @Override
@@ -70,17 +73,12 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
 
     @Override
     public void setSaveLastState(boolean state) {
-
+        mSaveCheckBox.setChecked(state);
     }
 
     @Override
     public void setPrepareTime(int state) {
-
-    }
-
-    @Override
-    public void setSavedSettings(int spinnerPos, boolean checkState) {
-
+        mPrepareSpinner.setSelection(state);
     }
 
     @Override
