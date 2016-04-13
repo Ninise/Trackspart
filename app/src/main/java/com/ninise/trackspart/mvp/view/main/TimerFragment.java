@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.ninise.trackspart.R;
+import com.ninise.trackspart.mvp.model.preferences.SettingsPreferences;
 import com.ninise.trackspart.mvp.presenter.main.IStateView;
 import com.ninise.trackspart.mvp.presenter.main.fragment.ITimerView;
 import com.ninise.trackspart.mvp.presenter.main.fragment.TimerPresenter;
@@ -32,6 +33,7 @@ public class TimerFragment extends Fragment implements ITimerView, IStateView {
     @BindString(R.string.timer_state_work) String mWork;
     @BindString(R.string.timer_state_rest) String mRest;
     @BindString(R.string.home_sets) String mSets;
+    @BindString(R.string.timer_state_prepare) String mPrepare;
 
     private TimerPresenter mPresenter;
 
@@ -49,6 +51,7 @@ public class TimerFragment extends Fragment implements ITimerView, IStateView {
         ButterKnife.bind(this , v);
 
         mPresenter.startTimer(
+                getActivity(),
                 getArguments().getInt(Constants.SETS),
                 getArguments().getInt(Constants.SECONDS),
                 getArguments().getInt(Constants.REST)
@@ -86,6 +89,15 @@ public class TimerFragment extends Fragment implements ITimerView, IStateView {
         mCircularProgressView.setProgress(state);
         mStateTextView.setText(mRest + " " + state);
         mCircularProgressView.setColor(getActivity().getResources().getColor(R.color.justGreen));
+    }
+
+    @Override
+    public void changePrepareState(int state) {
+        mCircularProgressView.setMaxProgress((
+                SettingsPreferences.getInstance(getActivity()).getSpinnerPosition() + 1) * 5);
+        mCircularProgressView.setProgress(state);
+        mStateTextView.setText(mPrepare + " " + state);
+        mCircularProgressView.setColor(getActivity().getResources().getColor(R.color.justYellow));
     }
 
     @Override

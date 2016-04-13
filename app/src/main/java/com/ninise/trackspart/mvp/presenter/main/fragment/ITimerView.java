@@ -7,4 +7,5 @@ public interface ITimerView extends IStateView {
     void onStopTimer();
     void backToMain();
 
+    void changePrepareState(int state);
 }

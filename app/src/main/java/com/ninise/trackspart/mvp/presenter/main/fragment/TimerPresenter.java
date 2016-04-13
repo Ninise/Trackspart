@@ -1,5 +1,8 @@
 package com.ninise.trackspart.mvp.presenter.main.fragment;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.ninise.trackspart.mvp.model.timer.IntervalTimer;
 
 public class TimerPresenter implements ITimerPresenter {
@@ -11,21 +14,25 @@ public class TimerPresenter implements ITimerPresenter {
     }
 
     @Override
-    public void startTimer(int sets, int seconds, int rest) {
+    public void startTimer(Context context, int sets, int seconds, int rest) {
         mView.changeSetsState(sets);
         mView.changeRestState(rest);
 
         int[] set = {sets};
 
-        IntervalTimer.startTimer(seconds, rest)
+        IntervalTimer.startTimer(context, seconds, rest)
                .doOnCompleted(() -> mView.changeSetsState(--set[0]))
                .repeat(sets)
                .subscribe(tick -> {
-                    if (rest < tick) {
-                        mView.changeSecsState(tick - rest);
-                    } else {
-                        mView.changeRestState(--tick);
-                    }
+                   if (rest + seconds < tick) {
+                       mView.changePrepareState(tick - seconds - rest);
+                   } else {
+                       if (rest < tick) {
+                           mView.changeSecsState(tick - rest);
+                       } else {
+                           mView.changeRestState(--tick);
+                       }
+                   }
                }, e -> {}, () -> {
                    mView.onStopTimer();
                    mView.backToMain();
