@@ -4,6 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ninise.trackspart.mvp.model.beans.Rest;
+import com.ninise.trackspart.mvp.model.beans.Seconds;
+import com.ninise.trackspart.mvp.model.beans.Sets;
 import com.ninise.trackspart.mvp.model.preferences.SettingsPreferences;
 
 public class SettingsPresenter implements ISettingsPresenter {

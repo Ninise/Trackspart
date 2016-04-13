@@ -70,6 +70,8 @@ public class MainFragment extends Fragment implements IMainView {
     public void onResume() {
         super.onResume();
 
+        mPresenter.setOldOptions(getActivity());
+
         changeSetsState(Sets.getInstance().getCount());
         changeSecsState(Seconds.getInstance().getCount());
         changeRestState(Rest.getInstance().getCount());
@@ -167,6 +169,12 @@ public class MainFragment extends Fragment implements IMainView {
 
         ft.replace(R.id.mainContainer, fragment);
         ft.commit();
+
+        mPresenter.saveOptions(
+                getActivity(),
+                Sets.getInstance().getCount(),
+                Seconds.getInstance().getCount(),
+                Rest.getInstance().getCount());
     }
 
     @Override

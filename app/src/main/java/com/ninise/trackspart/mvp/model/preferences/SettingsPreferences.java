@@ -46,4 +46,37 @@ public class SettingsPreferences {
         return mPreferences.contains(Constants.SETTINGS_SAVE_LAST) &&
                 mPreferences.getBoolean(Constants.SETTINGS_SAVE_LAST, false);
     }
+
+    public boolean setSetsCount(int count) {
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putInt(Constants.SETTINGS_SETS, count);
+        return editor.commit();
+    }
+
+    public int getSetsCount() {
+       return mPreferences.contains(Constants.SETTINGS_SETS) ?
+                mPreferences.getInt(Constants.SETTINGS_SETS, 0) : 0;
+    }
+
+    public boolean setSecondsCount(int count) {
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putInt(Constants.SETTINGS_SECONDS, count);
+        return editor.commit();
+    }
+
+    public int getSecondsCount() {
+        return mPreferences.contains(Constants.SETTINGS_SECONDS) ?
+                mPreferences.getInt(Constants.SETTINGS_SECONDS, 0) : 0;
+    }
+
+    public boolean setRestCount(int count) {
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putInt(Constants.SETTINGS_REST, count);
+        return editor.commit();
+    }
+
+    public int getRestCount() {
+        return mPreferences.contains(Constants.SETTINGS_REST) ?
+                mPreferences.getInt(Constants.SETTINGS_REST, 0) : 0;
+    }
 }

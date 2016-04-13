@@ -32,4 +32,12 @@ public class Seconds {
             count -= 1;
         }
     }
+
+    public void setCount(int c) {
+        if (c <= 0) {
+            count = 0;
+        } else {
+            count = c;
+        }
+    }
 }
