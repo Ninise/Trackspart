@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.jakewharton.rxbinding.view.RxView;
@@ -29,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     @Bind(R.id.settingsSaveBtn) Button mSaveButton;
     @BindDrawable(R.drawable.ic_action_navigation_arrow_back) Drawable mBackDrawable;
     @BindString(R.string.menu_settings) String mSettingsString;
+    @BindString(R.string.settings_changes_saved) String mChangesSaved;
 
     private SettingsPresenter mPresenter;
 
@@ -57,6 +59,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
 
         RxView.clicks(mSaveButton).subscribe(v -> {
             mPresenter.save(this, mPrepareSpinner.getSelectedItemPosition(), mSaveCheckBox.isChecked());
+            Toast.makeText(this, mChangesSaved, Toast.LENGTH_SHORT).show();
         });
 
         mPresenter = new SettingsPresenter(this);
@@ -84,5 +87,6 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     @Override
     public void onSaved() {
         onBackPressed();
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
     }
 }

@@ -2,6 +2,7 @@ package com.ninise.trackspart.mvp.presenter.settings;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.ninise.trackspart.mvp.model.preferences.SettingsPreferences;
 
@@ -17,7 +18,6 @@ public class SettingsPresenter implements ISettingsPresenter {
     public void save(Context context, int spinnerPos, boolean checkState) {
         SettingsPreferences.getInstance(context).setSaveLastCheckBox(checkState);
         SettingsPreferences.getInstance(context).setSpinnerPosition(spinnerPos);
-        Log.d("das", "save: " + spinnerPos);
 
         mView.onSaved();
     }

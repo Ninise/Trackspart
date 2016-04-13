@@ -16,6 +16,7 @@
     <string name="settings_save_data">Save (Sets, Secs, Rest) </string>
     <string name="settings_save">Save</string>
     <string name="timer_state_prepare">Get ready</string>
+    <string name="settings_changes_saved">Changes saved</string>
 
     <string-array name="prepare_list">
         <item>5</item>

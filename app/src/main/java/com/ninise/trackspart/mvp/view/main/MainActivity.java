@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menuSettings:
                 startActivity(new Intent(this, SettingsActivity.class));
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 break;
             case R.id.menuAbout:
                 break;
