@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ninise.trackspart.R;
+import com.ninise.trackspart.mvp.view.about.AboutActivity;
 import com.ninise.trackspart.mvp.view.settings.SettingsActivity;
 
 import butterknife.Bind;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 break;
             case R.id.menuAbout:
+                startActivity(new Intent(this, AboutActivity.class));
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 break;
             case R.id.menuExit:
                 finish();

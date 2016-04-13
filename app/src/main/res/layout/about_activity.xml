@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/justGrey">
+
+    <include android:id="@+id/aboutToolbar"
+             layout="@layout/tool_bar"/>
+
+
+
+    <RelativeLayout
+        android:id="@+id/timerCircularAndState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aboutToolbar"
+        >
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/aboutAppCircular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:cpv_animAutostart="true"
+            app:cpv_indeterminate="true"
+            app:cpv_thickness="8dp"
+            />
+
+        <TextView
+            android:id="@+id/aboutCreatorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aboutAppCircular"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/about_creator"
+            />
+
+    </RelativeLayout>
+
+
+
+    <Button
+        android:id="@+id/aboutOkBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/about_ok"
+        style="@style/RobotoButtonStyle"
+        />
+
+</RelativeLayout>
