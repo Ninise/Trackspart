@@ -4,7 +4,7 @@ public class Seconds {
 
     private static Seconds mInstance = null;
 
-    int count;
+    private int count;
 
     private Seconds() {
         this.count = 0;

@@ -5,7 +5,7 @@ public class Sets {
 
     private static Sets mInstance = null;
 
-    int count;
+    private int count;
 
     private Sets() {
         this.count = 0;

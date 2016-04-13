@@ -5,7 +5,7 @@ public class Rest {
 
     private static Rest mInstance = null;
 
-    int count;
+    private int count;
 
     private Rest() {
         this.count = 0;
