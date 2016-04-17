@@ -8,16 +8,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".mvp.view.main.MainActivity">
+        <activity android:name=".mvp.view.main.MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".mvp.view.settings.SettingsActivity"/>
+        <activity android:name=".mvp.view.settings.SettingsActivity"
+                  android:screenOrientation="portrait"/>
 
-        <activity android:name=".mvp.view.about.AboutActivity"/>
+        <activity android:name=".mvp.view.about.AboutActivity"
+                  android:screenOrientation="portrait"/>
 
     </application>
 

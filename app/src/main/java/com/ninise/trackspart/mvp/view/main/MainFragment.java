@@ -54,13 +54,11 @@ public class MainFragment extends Fragment implements IMainView {
         restButtons();
 
         RxView.clicks(mGoButton).subscribe(
-                aVoid -> {
-                    mPresenter.startTimer(
+                aVoid -> mPresenter.startTimer(
                             Sets.getInstance().getCount(),
                             Seconds.getInstance().getCount(),
                             Rest.getInstance().getCount()
-                    );
-                }
+                    )
         );
 
         return v;

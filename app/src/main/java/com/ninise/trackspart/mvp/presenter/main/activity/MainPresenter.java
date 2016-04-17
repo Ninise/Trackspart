@@ -1,23 +1,28 @@
 package com.ninise.trackspart.mvp.presenter.main.activity;
 
 import android.content.Context;
-import android.util.Log;
+import android.view.MenuItem;
 
+import com.ninise.trackspart.R;
 import com.ninise.trackspart.mvp.model.beans.Rest;
 import com.ninise.trackspart.mvp.model.beans.Seconds;
 import com.ninise.trackspart.mvp.model.beans.Sets;
 import com.ninise.trackspart.mvp.model.preferences.SettingsPreferences;
+import com.ninise.trackspart.mvp.view.about.AboutActivity;
+import com.ninise.trackspart.mvp.view.settings.SettingsActivity;
 
 public class MainPresenter implements IMainPresenter {
 
-    private static final String TAG = MainPresenter.class.getSimpleName();
-
     private IMainView mView;
+    private IMainActivityView mIMainActivityView;
 
     public MainPresenter(IMainView view) {
         mView = view;
     }
 
+    public MainPresenter(IMainActivityView view) {
+        this.mIMainActivityView = view;
+    }
 
     @Override
     public void setSetsState(int count) {
@@ -55,5 +60,22 @@ public class MainPresenter implements IMainPresenter {
     @Override
     public void startTimer(int sets, int seconds, int rest) {
        mView.displayWork();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.menuSettings:
+                mIMainActivityView.switchToFragment(SettingsActivity.class);
+                return true;
+            case R.id.menuAbout:
+                mIMainActivityView.switchToFragment(AboutActivity.class);
+                return true;
+            case R.id.menuExit:
+                mIMainActivityView.exit();
+                return true;
+        }
+
+        return false;
     }
 }

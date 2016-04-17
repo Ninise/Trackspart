@@ -9,19 +9,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding.support.v7.widget.RxToolbar;
 import com.ninise.trackspart.R;
-import com.ninise.trackspart.mvp.view.about.AboutActivity;
-import com.ninise.trackspart.mvp.view.settings.SettingsActivity;
+import com.ninise.trackspart.mvp.presenter.main.activity.IMainActivityView;
+import com.ninise.trackspart.mvp.presenter.main.activity.MainPresenter;
 
 import butterknife.Bind;
 import butterknife.BindDrawable;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMainActivityView {
 
     @Bind(R.id.homeToolbar) Toolbar mHomeToolbar;
     @BindString(R.string.app_name) String mAppNameString;
@@ -36,9 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        MainPresenter presenter = new MainPresenter(this);
+
         setSupportActionBar(mHomeToolbar);
         mHomeToolbar.setTitle(mAppNameString);
         mHomeToolbar.setNavigationIcon(mLogoToolbarDrawable);
+
+        RxToolbar.itemClicks(mHomeToolbar).subscribe(presenter::onMenuItemClick);
 
         showMainFragment();
     }
@@ -53,24 +57,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menuSettings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                break;
-            case R.id.menuAbout:
-                startActivity(new Intent(this, AboutActivity.class));
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                break;
-            case R.id.menuExit:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -91,5 +77,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.unbind(this);
         super.onDestroy();
         android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    @Override
+    public void switchToFragment(Class c) {
+        startActivity(new Intent(this, c));
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+    }
+
+    @Override
+    public void exit() {
+        finish();
     }
 }
