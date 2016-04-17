@@ -27,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     @Bind(R.id.settingsToolbar) Toolbar mToolbar;
     @Bind(R.id.settingsPrepareSpinner) AppCompatSpinner mPrepareSpinner;
     @Bind(R.id.settingsSaveDataCheckBox) AppCompatCheckBox mSaveCheckBox;
+    @Bind(R.id.settingsVolumeCheckBox) AppCompatCheckBox mSoundCheckBox;
     @Bind(R.id.settingsSaveBtn) Button mSaveButton;
     @BindDrawable(R.drawable.ic_action_navigation_arrow_back) Drawable mBackDrawable;
     @BindString(R.string.menu_settings) String mSettingsString;
@@ -58,7 +59,11 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
         mPrepareSpinner.setAdapter(adapterPrepareList);
 
         RxView.clicks(mSaveButton).subscribe(v -> {
-            mPresenter.save(this, mPrepareSpinner.getSelectedItemPosition(), mSaveCheckBox.isChecked());
+            mPresenter.save(
+                    this,
+                    mPrepareSpinner.getSelectedItemPosition(),
+                    mSaveCheckBox.isChecked(),
+                    mSoundCheckBox.isChecked());
             Toast.makeText(this, mChangesSaved, Toast.LENGTH_SHORT).show();
         });
 
@@ -66,6 +71,7 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
 
         mPresenter.getDefaultSaveLastState(this);
         mPresenter.getDefaultSpinnerPosition(this);
+        mPresenter.getDefaultSoundState(this);
     }
 
     @Override
@@ -82,6 +88,11 @@ public class SettingsActivity extends AppCompatActivity implements ISettingsView
     @Override
     public void setPrepareTime(int state) {
         mPrepareSpinner.setSelection(state);
+    }
+
+    @Override
+    public void setSoundState(boolean state) {
+        mSoundCheckBox.setChecked(state);
     }
 
     @Override

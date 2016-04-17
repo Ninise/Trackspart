@@ -4,6 +4,7 @@ public interface ISettingsView {
 
     void setSaveLastState(boolean state);
     void setPrepareTime(int state);
+    void setSoundState(boolean state);
     void onSaved();
 
 }

@@ -1,12 +1,7 @@
 package com.ninise.trackspart.mvp.presenter.settings;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.ninise.trackspart.mvp.model.beans.Rest;
-import com.ninise.trackspart.mvp.model.beans.Seconds;
-import com.ninise.trackspart.mvp.model.beans.Sets;
 import com.ninise.trackspart.mvp.model.preferences.SettingsPreferences;
 
 public class SettingsPresenter implements ISettingsPresenter {
@@ -18,9 +13,10 @@ public class SettingsPresenter implements ISettingsPresenter {
     }
 
     @Override
-    public void save(Context context, int spinnerPos, boolean checkState) {
-        SettingsPreferences.getInstance(context).setSaveLastCheckBox(checkState);
+    public void save(Context context, int spinnerPos, boolean checkStateSData, boolean checkStateSound) {
+        SettingsPreferences.getInstance(context).setSaveLastCheckBox(checkStateSData);
         SettingsPreferences.getInstance(context).setSpinnerPosition(spinnerPos);
+        SettingsPreferences.getInstance(context).setSoundState(checkStateSound);
 
         mView.onSaved();
     }
@@ -33,6 +29,11 @@ public class SettingsPresenter implements ISettingsPresenter {
     @Override
     public void getDefaultSpinnerPosition(Context context) {
         mView.setPrepareTime(SettingsPreferences.getInstance(context).getSpinnerPosition());
+    }
+
+    @Override
+    public void getDefaultSoundState(Context context) {
+        mView.setSoundState(SettingsPreferences.getInstance(context).getSoundState());
     }
 
     @Override

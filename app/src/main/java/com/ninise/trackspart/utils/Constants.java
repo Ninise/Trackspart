@@ -11,4 +11,5 @@ public class Constants {
     public static final String SETTINGS_SETS = "settings_sets";
     public static final String SETTINGS_SECONDS = "settings_seconds";
     public static final String SETTINGS_REST = "settings_rest";
+    public static final String SETTINGS_SOUND = "settings_sound";
 }

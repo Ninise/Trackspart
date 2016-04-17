@@ -79,4 +79,15 @@ public class SettingsPreferences {
         return mPreferences.contains(Constants.SETTINGS_REST) ?
                 mPreferences.getInt(Constants.SETTINGS_REST, 0) : 0;
     }
+
+    public boolean setSoundState(boolean state) {
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putBoolean(Constants.SETTINGS_SOUND, state);
+        return editor.commit();
+    }
+
+    public boolean getSoundState() {
+        return mPreferences.contains(Constants.SETTINGS_SOUND) &&
+                mPreferences.getBoolean(Constants.SETTINGS_SOUND, false);
+    }
 }

@@ -20,6 +20,7 @@
     <string name="about_creator">Trackspart \n Created by Ninise @ 2016</string>
     <string name="about_ok">OK</string>
     <string name="menu_volume">Volume</string>
+    <string name="settings_volume">Sound on step</string>
 
     <string-array name="prepare_list">
         <item>5</item>

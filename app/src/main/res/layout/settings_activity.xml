@@ -57,6 +57,30 @@
         android:layout_alignParentRight="true"
         />
 
+    <TextView
+        android:id="@+id/settingsVolumeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/settingsSaveDataTextView"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/settings_volume"
+        />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/settingsVolumeCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/settingsSaveDataCheckBox"
+        android:layout_alignParentRight="true"
+        />
+
     <Button
         android:id="@+id/settingsSaveBtn"
         android:layout_width="match_parent"
