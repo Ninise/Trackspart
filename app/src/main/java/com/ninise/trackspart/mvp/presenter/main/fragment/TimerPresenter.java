@@ -3,6 +3,8 @@ package com.ninise.trackspart.mvp.presenter.main.fragment;
 import android.content.Context;
 import android.util.Log;
 
+import com.ninise.trackspart.mvp.model.preferences.SettingsPreferences;
+import com.ninise.trackspart.mvp.model.timer.AlarmSound;
 import com.ninise.trackspart.mvp.model.timer.IntervalTimer;
 
 public class TimerPresenter implements ITimerPresenter {
@@ -21,7 +23,12 @@ public class TimerPresenter implements ITimerPresenter {
         int[] set = {sets};
 
         IntervalTimer.startTimer(context, seconds, rest)
-               .doOnCompleted(() -> mView.changeSetsState(--set[0]))
+               .doOnCompleted(() -> {
+                   mView.changeSetsState(--set[0]);
+                   if (SettingsPreferences.getInstance(context).getSoundState()) {
+                       AlarmSound.onSet(context);
+                   }
+               })
                .repeat(sets)
                .subscribe(tick -> {
                    if (rest + seconds < tick) {
